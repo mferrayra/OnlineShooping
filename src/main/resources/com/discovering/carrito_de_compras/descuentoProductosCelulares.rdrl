@@ -1,0 +1,12 @@
+package com.discovering.carrito_de_compras;
+
+import java.lang.Number;
+
+rule "descuentoProductosCelulares"
+	dialect "mvel"
+	when
+		prod : Producto( categoria == "CELULARES" )
+	then
+		prod.setDescuento( prod.getDescuento() + descuentos.getCelulares() );
+		prod.addObservacionDescuento( "Acumula un " + descuentos.getCelulares() + "% por ser un producto de la categoria celulares" );
+end

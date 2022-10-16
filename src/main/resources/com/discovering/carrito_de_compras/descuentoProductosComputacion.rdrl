@@ -1,0 +1,12 @@
+package com.discovering.carrito_de_compras;
+
+import java.lang.Number;
+
+rule "descuentoProductosComputacion"
+	dialect "mvel"
+	when
+		$prod : Producto( categoria == "COMPUTACION" )
+	then
+		$prod.setDescuento( $prod.getDescuento() + descuentos.getComputacion() );
+		$prod.addObservacionDescuento( "Acumula un " + descuentos.getComputacion() + "% por ser un producto de la categoria computacion" );
+end

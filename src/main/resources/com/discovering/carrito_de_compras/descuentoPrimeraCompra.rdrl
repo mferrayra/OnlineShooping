@@ -1,0 +1,12 @@
+package com.discovering.carrito_de_compras;
+
+import java.lang.Number;
+
+rule "descuentoPrimeraCompra"
+	dialect "mvel"
+	when
+		prod : Producto( aplicaDescuentoPrimeraCompra == true )
+	then
+		prod.setDescuento( prod.getDescuento() + descuentos.getPrimeraCompra() );
+		prod.addObservacionDescuento( "Acumula un " + descuentos.getPrimeraCompra() + "% primera compra cliente nuevo" );
+end

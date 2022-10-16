@@ -1,0 +1,12 @@
+package com.discovering.carrito_de_compras;
+
+import java.lang.Number;
+
+rule "descuentoCumpleCompra"
+	dialect "mvel"
+	when
+		prod : Producto( aplicaDescuentoCumple == true , cantidad == 1 )
+	then
+		prod.setDescuento( prod.getDescuento() + descuentos.getCumpleDescuentoCompra() );
+		prod.addObservacionDescuento( "Acumula un " + descuentos.getCumpleDescuentoCompra() + "% por cumpleaños" );
+end

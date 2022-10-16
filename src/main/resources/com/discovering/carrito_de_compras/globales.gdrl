@@ -1,0 +1,4 @@
+package com.discovering.carrito_de_compras;
+
+global com.discovering.carrito_de_compras.Descuentos descuentos;
+global com.discovering.carrito_de_compras.Gastos gastos;

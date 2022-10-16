@@ -1,0 +1,82 @@
+package com.discovering.carrito_de_compras;
+
+import com.discovering.carrito_de_compras.Cliente;
+import com.discovering.carrito_de_compras.Producto;
+import com.discovering.carrito_de_compras.Descuentos;
+import com.discovering.carrito_de_compras.Gastos;
+import java.util.List;
+import java.util.ArrayList;
+
+rule "primerCompraCliente"
+    when
+        $cliente : Cliente (nroCompra == 1, indicaPrimeraCompra() == false, $cliente.cumpleCliente() == false)
+    then
+        $cliente.aplicarDescuentoPrimeraCompra();
+end
+
+rule "descuentosItems" salience -10
+    when
+        $cliente : Cliente (descuentosProcesados == false)
+    then
+        if ($cliente.cumpleCliente()) {
+            $cliente.aplicarDescuentoPorCumpleaños();    
+        }
+        
+        for (Producto producto : $cliente.getProductos()) {
+            insert(producto);
+        }
+end
+
+rule "totalCompra" salience -20
+    when
+        $cliente : Cliente (descuentosProcesados == false)
+    then
+        for (Producto producto : $cliente.getProductos()) {
+            $cliente.setImporteTotal($cliente.getImporteTotal() + producto.obtenerImporteTotalItem());
+        }
+        
+        if ($cliente.getDescuentoCupon() == 0) {
+            modify($cliente) {
+                setDescuentosProcesados(true)        
+            }
+        }
+end
+
+rule "siTieneCuponDescuento" salience -30
+    when
+        $cliente : Cliente (descuentosProcesados == false)
+    then
+        $cliente.setDescuentosProcesados(true);
+        $cliente.setImporteTotal($cliente.getImporteTotal() - ($cliente.getImporteTotal() * $cliente.getDescuentoCupon() / 100));
+        $cliente.addObservacionDescuento("Se aplico un descuento por cupon del " + $cliente.getDescuentoCupon() + "% en el importe total de la compra.");
+        update($cliente);
+        
+end
+
+rule "cuponDescuentoParaLaProximaCompra"
+    when
+        $cliente : Cliente (importeTotal > 200000, descuentosProcesados == true)
+    then
+        $cliente.setCuponDescuentoProximaCompra(descuentos.getCuponDescuentoProximaCompra());
+end
+
+rule "encuestaSatisfaccion"
+    when
+        $cliente : Cliente(nroCompra == 4, descuentosProcesados == true, enviarEncuestaSatisfaccion == false)
+    then
+        $cliente.setEnviarEncuestaSatisfaccion(true);
+end
+
+rule "gastosEnvioCorreo"
+	when
+		$cliente : Cliente(importeTotal < 5000, descuentosProcesados == true, formaEnvio == "RETIRA CORREO")
+	then
+		$cliente.setGastoEnvio(gastos.getRetiraCorreo());
+end
+
+rule "gastosEnvioDomicilio"
+	when
+		$cliente : Cliente(importeTotal < 5000 , descuentosProcesados == true, formaEnvio == "RECIBE DOMICILIO")
+	then
+		$cliente.setGastoEnvio(gastos.getEnvioDomicilio());
+end

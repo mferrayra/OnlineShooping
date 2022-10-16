@@ -1,0 +1,12 @@
+package com.discovering.carrito_de_compras;
+
+import java.lang.Number;
+
+rule "descuentoProductosVideoJuegos"
+	dialect "mvel"
+	when
+		prod : Producto( categoria == "VIDEO JUEGOS" )
+	then
+		prod.setDescuento( prod.getDescuento() + descuentos.getVideojuegos() );
+		prod.addObservacionDescuento( "Acumula un " + descuentos.getVideojuegos() + "% por ser producto de la categoria videojuegos" );
+end

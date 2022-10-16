@@ -1,0 +1,13 @@
+package com.discovering.carrito_de_compras;
+
+import java.lang.Number;
+import java.util.ArrayList;
+
+rule "descuentoProductosElectronica"
+	dialect "mvel"
+	when
+		prod : Producto( categoria == "ELECTRONICA" )
+	then
+		prod.setDescuento( prod.getDescuento() + descuentos.getElectronica() );
+		prod.addObservacionDescuento( "Acumula un " + descuentos.getElectronica() + "% por ser producto de la categoria electronica" );
+end

@@ -1,0 +1,12 @@
+package com.discovering.carrito_de_compras;
+
+import java.lang.Number;
+
+rule "descuentoProductosElectrodomesticos"
+	dialect "mvel"
+	when
+		prod : Producto( categoria == "ELECTRODOMESTICOS" )
+	then
+		prod.setDescuento( prod.getDescuento() + descuentos.getElectrodomesticos() );
+		prod.addObservacionDescuento( "Acumula un " + descuentos.getElectrodomesticos() + "% por ser producto de la categoria electrodomesticos" );
+end

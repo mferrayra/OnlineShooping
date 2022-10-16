@@ -1,0 +1,180 @@
+<scenario>
+  <name>testRulesProductos.scenario</name>
+  <maxRuleFirings>100000</maxRuleFirings>
+  <globals>
+    <fact-data>
+      <type>Descuentos</type>
+      <fieldData/>
+      <name>descuentos</name>
+      <isModify>false</isModify>
+    </fact-data>
+    <fact-data>
+      <type>Gastos</type>
+      <fieldData/>
+      <name>gastos</name>
+      <isModify>false</isModify>
+    </fact-data>
+  </globals>
+  <fixtures>
+    <fact-data>
+      <type>Producto</type>
+      <fieldData>
+        <field-data>
+          <name>aplicaDescuentoCumple</name>
+          <value>true</value>
+          <nature>1</nature>
+        </field-data>
+        <field-data>
+          <name>cantidad</name>
+          <value>1</value>
+          <nature>4</nature>
+        </field-data>
+        <field-data>
+          <name>categoria</name>
+          <value>COMPUTACION</value>
+          <nature>4</nature>
+        </field-data>
+      </fieldData>
+      <name>prod_1</name>
+      <isModify>false</isModify>
+    </fact-data>
+    <execution-trace>
+      <executionTimeResult>11</executionTimeResult>
+      <numberOfRulesFired>2</numberOfRulesFired>
+    </execution-trace>
+    <expect-rule>
+      <ruleName>descuentoCumple2Unidad</ruleName>
+      <explanation>Rule [descuentoCumple2Unidad] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoCumpleCompra</ruleName>
+      <expectedCount>1</expectedCount>
+      <explanation>Rule [descuentoCumpleCompra] activated 1 times.</explanation>
+      <successResult>true</successResult>
+      <actualResult>1</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosCelulares</ruleName>
+      <explanation>Rule [descuentoProductosCelulares] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosComputacion</ruleName>
+      <expectedCount>1</expectedCount>
+      <explanation>Rule [descuentoProductosComputacion] activated 1 times.</explanation>
+      <successResult>true</successResult>
+      <actualResult>1</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosElectrodomesticos</ruleName>
+      <explanation>Rule [descuentoProductosElectrodomesticos] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosElectronica</ruleName>
+      <explanation>Rule [descuentoProductosElectronica] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosVideoJuegos</ruleName>
+      <explanation>Rule [descuentoProductosVideoJuegos] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <fact-data>
+      <type>Producto</type>
+      <fieldData>
+        <field-data>
+          <name>aplicaDescuentoCumple</name>
+          <value>false</value>
+          <nature>1</nature>
+        </field-data>
+        <field-data>
+          <name>cantidad</name>
+          <value>1</value>
+          <nature>4</nature>
+        </field-data>
+        <field-data>
+          <name>categoria</name>
+          <value>COMPUTACION</value>
+          <nature>4</nature>
+        </field-data>
+      </fieldData>
+      <name>prod_2</name>
+      <isModify>false</isModify>
+    </fact-data>
+    <execution-trace>
+      <executionTimeResult>0</executionTimeResult>
+      <numberOfRulesFired>1</numberOfRulesFired>
+    </execution-trace>
+    <expect-rule>
+      <ruleName>descuentoCumple2Unidad</ruleName>
+      <explanation>Rule [descuentoCumple2Unidad] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoCumpleCompra</ruleName>
+      <explanation>Rule [descuentoCumpleCompra] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosCelulares</ruleName>
+      <explanation>Rule [descuentoProductosCelulares] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosComputacion</ruleName>
+      <expectedCount>1</expectedCount>
+      <explanation>Rule [descuentoProductosComputacion] activated 1 times.</explanation>
+      <successResult>true</successResult>
+      <actualResult>1</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosElectrodomesticos</ruleName>
+      <explanation>Rule [descuentoProductosElectrodomesticos] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosElectronica</ruleName>
+      <explanation>Rule [descuentoProductosElectronica] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+    <expect-rule>
+      <ruleName>descuentoProductosVideoJuegos</ruleName>
+      <explanation>Rule [descuentoProductosVideoJuegos] was not activated.</explanation>
+      <expectedFire>false</expectedFire>
+      <successResult>true</successResult>
+      <actualResult>0</actualResult>
+    </expect-rule>
+  </fixtures>
+  <lastRunResult>2022-10-16 21:57:06.569 UTC</lastRunResult>
+  <rules/>
+  <inclusive>false</inclusive>
+  <packageName>com.discovering.carrito_de_compras</packageName>
+  <imports>
+    <imports/>
+  </imports>
+  <ksessions>
+    <string>onlineShoppingKieSession</string>
+  </ksessions>
+</scenario>
