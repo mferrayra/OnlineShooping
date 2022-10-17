@@ -196,7 +196,7 @@ public class Cliente implements java.io.Serializable {
 		this.enviarEncuestaSatisfaccion = enviarEncuestaSatisfaccion;
 	}
 
-	public void aplicarDescuentoPorCumpleaños() {
+	public void aplicarDescuentoPorCumple() {
 		Producto productosIguales = this.getProductos().stream()
 				.filter(p -> p.getCantidad() > 1).findFirst().orElse(null);
 		if (productosIguales != null) {

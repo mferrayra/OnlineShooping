@@ -19,7 +19,7 @@ rule "descuentosItems" salience -10
         $cliente : Cliente (descuentosProcesados == false)
     then
         if ($cliente.cumpleCliente()) {
-            $cliente.aplicarDescuentoPorCumpleaños();    
+            $cliente.aplicarDescuentoPorCumple();    
         }
         
         for (Producto producto : $cliente.getProductos()) {
